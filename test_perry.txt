@@ -4,4 +4,5 @@ Another trigger.
 Another trigger.
 Another trigger.
 Another trigger.
+com.cloudbees.jenkins.GitHubPushTrigger
 Another trigger.
