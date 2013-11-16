@@ -75,7 +75,7 @@ public class GitHubCommitNotifier extends Notifier {
                 }
                 GHCommit commit = repository.getCommit(sha1);
                 GHCommitComment comment = commit.createComment(duration);
-                System.out.println("AAAAAAAAAAAAAAAAAAA").
+                LOGGER.info("Attempted to create comment: " + comment);
                 listener.getLogger().println(Messages.GitHubCommitNotifier_SettingCommitStatus(repository.getUrl() + "/commit/" + sha1));
                 repository.createCommitStatus(sha1, state, build.getAbsoluteUrl(), msg);
             }
@@ -94,5 +94,7 @@ public class GitHubCommitNotifier extends Notifier {
             return "Set build status on GitHub commit";
         }
     }
+
+    private static final Logger LOGGER = Logger.getLogger(GitHubPushTrigger.class.getName());
 
 }
