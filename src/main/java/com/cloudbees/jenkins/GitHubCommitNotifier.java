@@ -23,6 +23,8 @@ import org.jvnet.localizer.Localizable;
 import org.kohsuke.github.GHCommitState;
 import org.kohsuke.github.GHPullRequest;
 import org.kohsuke.github.GHRepository;
+import org.kohsuke.github.GHCommit;
+import org.kohsuke.github.GHCommitComment;
 import org.kohsuke.github.GitHub;
 import org.kohsuke.stapler.DataBoundConstructor;
 
@@ -71,7 +73,9 @@ public class GitHubCommitNotifier extends Notifier {
                     state = GHCommitState.ERROR;
                     msg = Messages.CommitNotifier_Failed(build.getDisplayName(), duration);
                 }
-
+                GHCommit commit = repository.getCommit(sha1);
+                GHCommitComment comment = commit.createComment(duration);
+                System.out.println("AAAAAAAAAAAAAAAAAAA").
                 listener.getLogger().println(Messages.GitHubCommitNotifier_SettingCommitStatus(repository.getUrl() + "/commit/" + sha1));
                 repository.createCommitStatus(sha1, state, build.getAbsoluteUrl(), msg);
             }
